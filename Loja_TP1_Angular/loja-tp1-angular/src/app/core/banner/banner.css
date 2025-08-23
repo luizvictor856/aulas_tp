@@ -1,0 +1,7 @@
+.banner {
+    width: 100%;
+    height: 400px;
+    background-image: url("../../../../public/images/campus.jpg");
+    background-size: cover;
+    background-position: center;
+}

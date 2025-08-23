@@ -13,6 +13,10 @@
     justify-content: center;
 }
 
+.header h1 {
+    padding: 10px 0;
+}
+
 .header nav a {
     color: white;
     margin: 0;

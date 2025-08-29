@@ -7,6 +7,10 @@ import { Component, model } from '@angular/core';
   styleUrl: './quantidade-controle.css'
 })
 export class QuantidadeControle {
+
+  // imput --> [nome]
+  // output --> (nome)
+  // model --> [(contdor)] = "signal" | "banana em uma caixa"
   contador = model<number>(1);
 
 

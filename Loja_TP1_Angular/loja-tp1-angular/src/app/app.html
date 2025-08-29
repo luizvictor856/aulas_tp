@@ -2,7 +2,8 @@
 <div class="container"> 
   <h2>Angular - Aula 02</h2>
   <span>{{ sobre?? 'Em construção' }}</span>
-  <app-quantidade-controle></app-quantidade-controle>
+  <app-quantidade-controle [(contador)]="qtd"></app-quantidade-controle> <br>
+  <span>Quantidade: {{ qtd () }}</span>
 </div>
 <app-banner></app-banner>
 <app-footer></app-footer> 

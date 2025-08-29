@@ -14,6 +14,9 @@ export class App {
   
   sobre? : string; 
   
+  qtd = signal (1);
+
+
   receberSobre(texto: string) {
     this.sobre = texto;
   } 

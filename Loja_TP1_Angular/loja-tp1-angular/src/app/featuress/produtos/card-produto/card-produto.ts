@@ -13,7 +13,7 @@ export class CardProduto {
   produto = input.required <Produto>();
 
 
-  qtde = signal <number>(1);
+  qtde = signal <number>(0); 
 
   add = output<{id: number, quantity: number}>();
   view = output<number>();

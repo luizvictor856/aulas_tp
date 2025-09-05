@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { CardProduto } from "../../../featuress/produtos/card-produto/card-produto";
 import { Produto } from '../../../model/produto';
 
@@ -15,21 +15,24 @@ export class ListaProdutos {
       nome: 'Produto 1',
       descricao:'1',
       preco: 79.90,
-      promo: true
+      promo: true,
+      estado: 'usado'
     },
 
     {
       id: 2,
       nome: 'Produto 2',
       descricao:'1',
-      preco: 79.90
+      preco: 79.90,
+      estado: 'esgotado'
     },
 
     {
       id: 3,
       nome: 'Produto 3',
       descricao:'1',
-      preco: 79.90
+      preco: 79.90,
+      estado: 'novo'
 
     },
      
@@ -37,14 +40,28 @@ export class ListaProdutos {
       id: 4,
       nome: 'Produto 4',
       descricao:'1',
-      preco: 79.90
+      preco: 79.90,
+      estado: 'novo'
 
     }
 
   ]
 
+  apenasPromo = signal(false);
+
+  prodExibidos = computed(() => this.apenasPromo() ? this.produtos.filter(p => p.promo) : this.produtos);
+
+  alternarPromo() {
+    this.apenasPromo.update(p => !p); // altenar função de promoção 
+  }
+
   onAddProduct(produto: {id: number, quantity: number}) {
     alert(`Produto ${produto.id}, ${produto.quantity} unidades`);
   }
+
+  onViewProduct (id: number) {
+    alert(`Id do pruduto $(id)`)
+  }
+
 
 }

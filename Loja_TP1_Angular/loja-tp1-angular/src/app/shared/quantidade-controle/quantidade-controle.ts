@@ -11,7 +11,7 @@ export class QuantidadeControle {
   // imput --> [nome]
   // output --> (nome)
   // model --> [(contdor)] = "signal" | "banana em uma caixa"
-  contador = model<number>(1);
+  contador = model<number>(0);
 
 
   incrementar() {
@@ -20,7 +20,7 @@ export class QuantidadeControle {
 
 
   decrementar() {
-    this.contador.set(Math.max(1, this.contador() - 1)); 
+    this.contador.set(Math.max(0, this.contador() - 1)); 
     // this.contador.update(v => Math.max (1, v-1)); | outra forma
   }
 

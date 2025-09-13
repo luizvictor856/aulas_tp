@@ -1,6 +1,8 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { CardProduto } from "../../../featuress/produtos/card-produto/card-produto";
 import { Produto } from '../../../model/produto';
+import { ProdutoService } from '../services/produto.service';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'lista-produtos',
@@ -9,47 +11,24 @@ import { Produto } from '../../../model/produto';
   styleUrl: './lista-produtos.css'
 })
 export class ListaProdutos {
-  produtos: Produto [] = [
-    {
-      id: 1,
-      nome: 'Produto 1',
-      descricao:'1',
-      preco: 79.90,
-      promo: true,
-      estado: 'usado'
-    },
+  private produtoService = inject(ProdutoService);
 
-    {
-      id: 2,
-      nome: 'Produto 2',
-      descricao:'1',
-      preco: 79.90,
-      estado: 'esgotado'
-    },
+  private _produtos = toSignal<Produto[], Produto[]>(
+    this.produtoService.listar(),
+    { initialValue: [] }
+  );
+  public get produtos() {
+    return this._produtos;
+  }
+  public set produtos(value) {
+    this._produtos = value;
+  }
 
-    {
-      id: 3,
-      nome: 'Produto 3',
-      descricao:'1',
-      preco: 79.90,
-      estado: 'novo'
-
-    },
-     
-    {
-      id: 4,
-      nome: 'Produto 4',
-      descricao:'1',
-      preco: 79.90,
-      estado: 'novo'
-
-    }
-
-  ]
 
   apenasPromo = signal(false);
 
-  prodExibidos = computed(() => this.apenasPromo() ? this.produtos.filter(p => p.promo) : this.produtos);
+  prodExibidos = computed(() => this.apenasPromo() ? this.produto.filter((p: { promo: any; }) => p.promo) : this.produtos);
+  produto: any | undefined | undefined;
 
   alternarPromo() {
     this.apenasPromo.update(p => !p); // altenar função de promoção 
